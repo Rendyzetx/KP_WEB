@@ -1,24 +1,15 @@
-# Tripify - Responsive Tours & Travel Website Design
+# WELCOME TO WEB WISATA BUKIT KEBO
 
-## My process
+### BY
 
-### Built with
+- Rendy Pernanda (11211074)
+- M. Aqsal Ilham Syafatullah (11211048)
+- Muhammad Ardian Saputra (11211055)
 
-- Semantic HTML5 markup
-- React
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- TailwindCss / DaisyUI - For styles
+## HOW TO INSTALL
 
-the main features of this website are :
+`npm i`
 
-- ✅ responsive sticky navbar with toggle effect.
-- ✅ responsive home section with beautiful video on background and responsive form in home section.
-- ✅ responsive feature section with card hover effects.
-- ✅ responsive about section.
-- ✅ responsive gallery section with image hover effect.
-- ✅ responsive review section.
-- ✅ responsive contact section with google map provided.
-- ✅ responsive newsletter section.
-- ✅ responsive footer section.
+`npm install framer-motion`
+
+`npm install react-icons`
