@@ -1,36 +1,42 @@
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import hawaii__img from "../../assets/images/featued-img-1.jpg";
-import egypt__img from "../../assets/images/featued-img-2.jpg";
-import india__img from "../../assets/images/featued-img-3.jpg";
-import { useEffect } from "react";
 
-const locations = [
+import image1 from "../../assets/images/image-1.jpg";
+import image2 from "../../assets/images/image-2.jpg";
+import image3 from "../../assets/images/image-3.jpg";
+import image4 from "../../assets/images/image-4.jpg";
+import image5 from "../../assets/images/image-5.jpg";
+
+const fasilitas = [
   {
-    name: "hawaii",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam animi consequuntur ea molestias illo. Porro error facilis obcaecati. Quisquam, placeat",
-    discount: 35,
-    rate: 5,
-    image: hawaii__img,
+    name: "Spot Foto Instagramable",
+    desc: "Bukit Kebo menawarkan banyak spot foto menarik berlatar hutan dan pemandangan kota Balikpapan.",
+    image: image1,
   },
   {
-    name: "egypt",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam animi consequuntur ea molestias illo. Porro error facilis obcaecati. Quisquam, placeat",
-    discount: null,
-    rate: 4,
-    image: egypt__img,
+    name: "Gazebo & Tempat Duduk",
+    desc: "Tersedia gazebo dan tempat duduk untuk bersantai menikmati udara segar dan pemandangan.",
+    image: image2,
   },
   {
-    name: "india",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam animi consequuntur ea molestias illo. Porro error facilis obcaecati. Quisquam, placeat",
-    discount: 45,
-    rate: 3,
-    image: india__img,
+    name: "Warung & Kafe",
+    desc: "Ada warung dan kafe sederhana yang menyediakan makanan ringan dan minuman.",
+    image: image3,
+  },
+  {
+    name: "Area Camping",
+    desc: "Tersedia area camping untuk pengunjung yang ingin bermalam dan menikmati suasana malam di bukit.",
+    image: image4,
+  },
+  {
+    name: "Parkir Luas",
+    desc: "Area parkir yang luas dan mudah diakses kendaraan roda dua maupun empat.",
+    image: image5,
   },
 ];
 
-const FeaturedLocations = ({ setSectionInView }) => {
+const FeaturedFacilities = ({ setSectionInView }) => {
   const { ref, inView } = useInView({
-    /* Optional options */
     threshold: 0.2,
   });
 
@@ -38,55 +44,27 @@ const FeaturedLocations = ({ setSectionInView }) => {
     if (inView) {
       setSectionInView("feature");
     }
-  }, [inView]);
+  }, [inView, setSectionInView]);
+
   return (
     <section ref={ref} className="bg-base-200" id="feature">
       <h1 className="uppercase text-center font-bold text-3xl pb-10">
-        <span className="text-accent">f</span>eatured{" "}
-        <span className="text-accent">l</span>ocations
+        <span className="text-accent">f</span>asilitas{" "}
+        <span className="text-accent">b</span>ukit kebo
       </h1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {locations.map((loc, index) => (
+        {fasilitas.map((item, index) => (
           <div key={index} className="card card-compact bg-base-100 shadow-xl">
             <figure className="max-h-40 lg:max-h-48 xl:max-h-52 h-full relative">
-              <img className="h-full w-full" src={loc.image} alt={loc.name} />
-              {loc.discount && (
-                <span className="badge  badge-error px-3 absolute top-3 left-3 text-primary-content">
-                  {loc.discount}%
-                </span>
-              )}
+              <img
+                className="h-full w-full object-cover"
+                src={item.image}
+                alt={item.name}
+              />
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className="card-title text-accent lg:text-2xl ">
-                {loc.name}
-              </h2>
-              <p>{loc.desc}</p>
-              <div className="flex">
-                {[1, 2, 3, 4, 5, 6].map((star, index) => (
-                  <svg
-                    key={index}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className={`w-4 h-4 ${
-                      index < loc.rate ? "fill-orange-500" : "fill-transparent"
-                    }  stroke-orange-500 `}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                    />
-                  </svg>
-                ))}
-              </div>
-
-              <div className="card-actions mt-2 ">
-                <button className="btn  btn-accent  text-primary-content">
-                  Check Out!
-                </button>
-              </div>
+              <h2 className="card-title text-accent lg:text-2xl">{item.name}</h2>
+              <p>{item.desc}</p>
             </div>
           </div>
         ))}
@@ -95,4 +73,4 @@ const FeaturedLocations = ({ setSectionInView }) => {
   );
 };
 
-export default FeaturedLocations;
+export default FeaturedFacilities;

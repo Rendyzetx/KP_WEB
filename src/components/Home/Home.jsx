@@ -1,23 +1,33 @@
 import React, { useEffect } from "react";
-import home_video from "../../assets/images/home-video.mp4";
+import { motion } from "framer-motion";
+import bukit_kebo_video from "../../assets/videos/home-video.mp4";
 import { useInView } from "react-intersection-observer";
 
 export const Home = ({ setSectionInView }) => {
   const { ref, inView } = useInView({
-    /* Optional options */
     threshold: 0.2,
   });
+
   useEffect(() => {
     if (inView) {
       setSectionInView("home");
     }
   }, [inView]);
 
+  const contentVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut", delay: custom * 0.3 },
+    }),
+  };
+
   return (
     <section
       ref={ref}
       id="home"
-      className="w-full min-h-screen pt-20 pb-10 relative flex flex-col items-center lg:flex-row lg:justify-center gap-10 "
+      className="w-full min-h-screen pt-28 pb-10 relative flex flex-col items-center lg:flex-row lg:justify-center gap-10"
     >
       <video
         autoPlay
@@ -26,75 +36,74 @@ export const Home = ({ setSectionInView }) => {
         id="HomeVideo"
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
       >
-        <source src={home_video} type="video/mp4" />
+        <source src={bukit_kebo_video} type="video/mp4" />
       </video>
-      <div>
-        <h2 className="text-4xl lg:text-5xl font-bold uppercase text-center lg:text-left text-primary-content ">
-          explore new places, <br />
-          adventure <br /> awaits.
-        </h2>
-        <p className="text-center lg:text-lg xl:text-2xl lg:pl-5 lg:text-left lg:border-l-2 xl:border-l-4 lg:border-l-base-300 text-primary-content mt-5">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
-          necessitatibus sunt atque consequuntur quam veniam magnam consectetur,
-          odio velit alias!
-        </p>
-      </div>
 
-      <div className="w-full max-w-md">
-        <form className="rounded-md bg-base-100 shadow-xl p-5 " action="">
-          <h3 className="text-xl font-bold uppercase text-center mb-5">
-            search your destination
-          </h3>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text text-accent uppercase">location</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Place You Want To Visit"
-              className="input input-accent input-bordered w-full "
-            />
-          </div>
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text text-accent uppercase">
-                guest members
-              </span>
-            </label>
-            <input
-              type="number"
-              placeholder="Number of people"
-              className="input input-accent input-bordered w-full"
-            />
-          </div>
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text text-accent uppercase">arrival</span>
-            </label>
-            <input
-              type="date"
-              //   placeholder="Place You Want To Visit"
-              className="input input-accent input-bordered w-full "
-            />
-          </div>
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text text-accent uppercase">leaving</span>
-            </label>
-            <input
-              type="date"
-              //   placeholder="Place You Want To Visit"
-              className="input input-accent input-bordered w-full"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-accent btn-block mt-5 text-primary-content"
-          >
-            Search
-          </button>
-        </form>
-      </div>
+      <motion.div
+        className="max-w-4xl text-center lg:text-left bg-black bg-opacity-50 p-5 rounded-md"
+        variants={contentVariants}
+        initial="hidden"
+        animate="visible"
+        custom={0}
+      >
+        <h2 className="text-4xl lg:text-5xl font-bold uppercase text-white">
+          Jelajahi Bukit Kebo, <br />
+          Keindahan Alam Balikpapan
+        </h2>
+        <p className="mt-5 text-lg lg:text-xl text-white">
+          Bukit Kebo merupakan destinasi wisata alam yang sedang hits di Balikpapan, Kalimantan Timur. 
+          Dahulu merupakan peternakan kerbau yang kini berkembang menjadi lokasi wisata dengan hamparan padang rumput hijau, 
+          pemandangan kota dari ketinggian, serta fasilitas camping dan hiking yang terus dikembangkan.
+        </p>
+        <p className="mt-3 text-lg lg:text-xl text-white">
+          Lokasi mudah diakses di Jalan Soekarno-Hatta KM 8, cocok untuk keluarga dan pecinta alam yang ingin menikmati suasana asri dan udara segar.
+        </p>
+        <p className="mt-3 text-sm text-white/80 italic">
+          Sumber informasi lainnya:
+          <ul className="list-disc list-inside mt-1">
+            <li>
+              <a
+                href="https://kaltimkece.id/warta/balikpapan/berawal-dari-lokasi-syuting-bukit-kebo-di-balikpapan-jadi-lokasi-wisata-andalan-masa-depan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                Kaltim Kece - Sejarah dan Wisata Bukit Kebo
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.detik.com/kalimantan/wisata/d-7831039/bukit-kebo-balikpapan-wisata-alam-habitat-kerbau-yang-lagi-hits"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                Detik.com – Bukit Kebo, Wisata Alam Habitat Kerbau yang Lagi Hits
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.kompas.tv/video/411814/bukit-kebo-balikpapan-jadi-lokasi-wisata-favorit-warga-di-akhir-pekan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                Kompas.com – Liputan Wisata Bukit Kebo
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.tribunnews.com/tag/bukit-kebo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                Tribunnews.com – Berita dan Artikel Bukit Kebo
+              </a>
+            </li>
+          </ul>
+        </p>
+      </motion.div>
     </section>
   );
 };
